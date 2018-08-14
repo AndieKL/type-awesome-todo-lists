@@ -1,0 +1,35 @@
+/* add your variables here */
+
+body {
+  font-family: 'Raleway', sans-serif;
+  background-color: #FFFBE5;
+  color: #333;
+}
+
+h1 {
+	text-align: center;
+	margin-top: 30px;
+}
+
+form {
+	margin: 20px;
+	padding: 30px;
+	border: 2px dotted #CCC8C5;
+	border-radius: 3px;
+}
+
+button {
+	margin: 20px 0;
+}
+ .title-label {
+ 	margin: 20px 0 0;
+ 	font-weight: 600;
+ 	font-size: 1.2em;
+ 	display: block;
+ }
+
+ input, select {
+ 	margin: 0 10px;
+ }
+
+

@@ -1,0 +1,42 @@
+/* add your variables here */
+$LightGrey: #CCC8C5;
+$Slate: #3C4E5C;
+$Rose: #B88187;
+$Peach: #D9B19A;
+$Blue: #547C86;
+$Purple: #524451;
+$Cream: #FFFBE5;
+
+body {
+  font-family: 'Raleway', sans-serif;
+  background-color: $Cream;
+  color: #333;
+}
+
+h1 {
+	text-align: center;
+	margin-top: 30px;
+}
+
+form {
+	margin: 20px;
+	padding: 30px;
+	border: 2px dotted $LightGrey;
+	border-radius: 3px;
+}
+
+button {
+	margin: 20px 0;
+}
+ .title-label {
+ 	margin: 20px 0 0;
+ 	font-weight: 600;
+ 	font-size: 1.2em;
+ 	display: block;
+ }
+
+ input, select {
+ 	margin: 0 10px;
+ }
+
+
