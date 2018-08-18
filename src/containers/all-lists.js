@@ -2,6 +2,7 @@ import React,  { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { fetchToDos } from '../actions';
+import ListItem from '../components/list-item';
 
 class AllLists extends Component {
 	constructor(props) {
@@ -16,8 +17,16 @@ class AllLists extends Component {
 	renderLists() {
 		return _.map(this.props.lists, (list,index) => {
 	      return (
-	        <div className={list.type} key={index}>
+	        <div className={`todo-list ${list.type}`} key={index}>
 	          <h2>{list.title}</h2>
+	          <ul className="list-group list-group-flush">
+	          {(list.items).map((item,index) => (
+					<ListItem
+						key={index}
+						item={item} 
+						index={index}
+				/>))}
+	          </ul>
 	        </div>
 	      );
     	});
@@ -25,7 +34,7 @@ class AllLists extends Component {
 
 	render() {
 		if (!this.props.lists) {
-			console.log('There is no list');
+			//There are no lists in the user's database
 			return (
 				<div>
 					<h2>Create a new list to get started.</h2>
@@ -37,7 +46,6 @@ class AllLists extends Component {
 } 
 
 function mapStateToProps(state) {
-	//whatever is returned will show up as props
 	return {
 		lists: state.lists
 	};

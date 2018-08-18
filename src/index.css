@@ -1,35 +1,187 @@
 /* add your variables here */
 
 body {
-  font-family: 'Raleway', sans-serif;
-  background-color: #FFFBE5;
-  color: #333;
+	font-family: 'Raleway', sans-serif;
+	background-color: #FFFBE5;
+	color: #333;
 }
 
-h1 {
+
+/* Destroy Boorstrap's ugly button settings */
+.btn.active.focus,
+	.btn.active:focus,
+	.btn.focus,
+	.btn.focus:active,
+	.btn:active:focus,
+	.btn:focus {
+		font-color: #333;
+		outline: 0 !important;
+		outline-offset: 0  !important;
+		background-image: none  !important;
+		box-shadow: 0 0 8px #CCC8C5 !important;
+}
+
+header {
+	width: 100%;
+	padding: 30px 0;
+	margin: 0;
 	text-align: center;
-	margin-top: 30px;
 }
 
-form {
+header h1 {
+		display: inline-block;
+		text-align: center;
+	}
+
+header #new-list-btn {
+		display: inline-block;
+		font-size: 3em;
+		padding: 10px;
+		margin: 0;
+		margin-left: 40px;
+		margin-top: -15px;
+		line-height: .5;
+		background-color: #333;
+		border: none;
+	}
+
+header #new-list-btn:hover {
+		background-color: #524451;
+	}/*end of header styles*/
+
+
+
+
+
+/*create list form styles*/
+.create-list-form {
+	background-color: #547C86;
+	color: #fff;
 	margin: 20px;
 	padding: 30px;
 	border: 2px dotted #CCC8C5;
 	border-radius: 3px;
 }
+.create-list-form input:focus, .create-list-form select:focus, .create-list-form input:hover, .create-list-form select:hover {
+		box-shadow: none;
+		border: 2px solid #524451;
+	}
+.create-list-form .btn-primary {
+		color: #333;
+		font-weight: 600;
+		margin-top: 30px;
+		background-color: #D9B19A;
+		border: 1px solid #333;
+		margin-right: 20px;
+	}
+.create-list-form .btn-primary:focus:active, .create-list-form .btn-primary:hover {
+			border-color: #333;
+			color: #333;
+			background-color: #FFFBE5;
+		}
+.create-list-form .btn-secondary {
+		color: #333;
+		font-weight: 600;
+		font-style: italic;
+		background-color: #eee;
+	}
+.create-list-form .btn-secondary:hover {
+			background-color: #D9B19A;
+		}
+.create-list-form .title-label {
+	 	margin: 20px 0 0;
+	 	font-weight: 600;
+	 	font-size: 1.2em;
+	 	display: block;
+ 	}
+.create-list-form .list-input { 
+		position: relative;
+	}
+.create-list-form .list-input .custom-button {
+			padding: 0 5px;
+			position: absolute;
+			right: 0;
+			top: 0;
+			font-weight: 600;
+			font-size: .8em;
+			margin: 0;
+			border: none;
+			background-color: #eee;
+			border-radius: 3px;
+			transition: background-color .5s ease;
+		}
+.create-list-form .list-input .custom-button:hover{
+				background-color: #D9B19A;
+				cursor: pointer;
+			}
+.create-list-form .list-input input {
+			padding-right: 20px;
+		} /*end of create list form styles*/
 
-button {
-	margin: 20px 0;
+
+/*Todo Lists*/
+.todo-list {
+	margin: 0;
+	padding: 20px;
+	border: 1px solid #333;
+	border-radius: 6px;
+	display: inline-block;
 }
- .title-label {
- 	margin: 20px 0 0;
- 	font-weight: 600;
- 	font-size: 1.2em;
- 	display: block;
- }
+.todo-list.today {
+		background-color: #3C4E5C;
+		color: #eee;
+		font-size: 120%;
+	}
+.todo-list.this-week{
+		background-color: #524451;
+		color: #eee;
+		font-size: 120%;
+	}
+.todo-list.this-month{
+		background-color: #D9B19A;
+		font-size: 90%;
+	}
+.todo-list.eventually{
+		background-color: #B88187;
+		font-size: 90%;
+		border: 1px solid #333;
+	}
+.todo-list.eventually h2 {
+			font-size: 1.5em;
+			font-weight: 600;
+		}
+.todo-list .list-group-item {
+		background-color: transparent;
 
- input, select {
- 	margin: 0 10px;
- }
+	}
+.todo-list .list-group-item p {
+			margin: 0;
+			padding: 0;
+			font-weight: 600;
+			width: 10px;
+			height: 15px;
+		}
+.todo-list .list-group-item button {
+			opacity: 0;
+			padding: 0 3px;
+			font-size: .7em;
+			margin-left: 10px;
+			margin-right: -5px;
+			background-color: none;
+			border: none;
+		}
+.todo-list li:hover button {
+			opacity: 1;
+		}
+.todo-list li:hover button:hover {
+			cursor: pointer;
+		}/* end of todo lists styles */
+
+ 
+
+
+
+
+
 
 
