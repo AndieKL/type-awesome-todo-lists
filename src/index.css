@@ -21,6 +21,23 @@ body {
 		box-shadow: 0 0 8px #CCC8C5 !important;
 }
 
+.btn-graphic {
+	padding: 0 3px;
+	background-color: none;
+	border: none;
+}
+
+.btn-graphic p {
+		margin: 0;
+		padding: 0;
+		font-weight: 600;
+		}
+
+.btn-graphic:hover{
+		cursor: pointer;
+	}
+
+
 header {
 	width: 100%;
 	padding: 30px 0;
@@ -28,10 +45,12 @@ header {
 	text-align: center;
 }
 
+
 header h1 {
 		display: inline-block;
 		text-align: center;
 	}
+
 
 header #new-list-btn {
 		display: inline-block;
@@ -45,13 +64,10 @@ header #new-list-btn {
 		border: none;
 	}
 
+
 header #new-list-btn:hover {
 		background-color: #524451;
 	}/*end of header styles*/
-
-
-
-
 
 /*create list form styles*/
 .create-list-form {
@@ -126,56 +142,58 @@ header #new-list-btn:hover {
 	border: 1px solid #333;
 	border-radius: 6px;
 	display: inline-block;
+
+
+	
 }
 .todo-list.today {
 		background-color: #3C4E5C;
 		color: #eee;
-		font-size: 120%;
 	}
 .todo-list.this-week{
 		background-color: #524451;
 		color: #eee;
-		font-size: 120%;
 	}
 .todo-list.this-month{
 		background-color: #D9B19A;
-		font-size: 90%;
 	}
 .todo-list.eventually{
 		background-color: #B88187;
-		font-size: 90%;
 		border: 1px solid #333;
 	}
 .todo-list.eventually h2 {
 			font-size: 1.5em;
 			font-weight: 600;
 		}
+.todo-list .todo-list-header button {
+			opacity: 0;
+			width: 30px;
+			height: 30px;
+			font-size: 1.5em;
+			float: right;
+			margin-left: 10px;
+		}
+.todo-list .todo-list-header button p {
+				margin-top: -2px;
+			}
+.todo-list .todo-list-header:hover button {
+				opacity: 1;
+			}
 .todo-list .list-group-item {
 		background-color: transparent;
-
 	}
-.todo-list .list-group-item p {
-			margin: 0;
-			padding: 0;
-			font-weight: 600;
-			width: 10px;
-			height: 15px;
-		}
 .todo-list .list-group-item button {
 			opacity: 0;
-			padding: 0 3px;
+			width: 20px;
+			height: 20px;
+
 			font-size: .7em;
 			margin-left: 10px;
 			margin-right: -5px;
-			background-color: none;
-			border: none;
 		}
-.todo-list li:hover button {
-			opacity: 1;
-		}
-.todo-list li:hover button:hover {
-			cursor: pointer;
-		}/* end of todo lists styles */
+.todo-list .list-group-item:hover button {
+				opacity: 1;
+			}/* end of todo lists styles */
 
  
 

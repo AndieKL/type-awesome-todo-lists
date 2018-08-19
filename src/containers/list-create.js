@@ -6,8 +6,6 @@ import { addList } from '../actions';  //add the new list of items to the Applic
 import ListItemInput from '../components/list-item-input'; //render and manage individual to-do items
 
 class AddList extends Component {
-
- 
 	constructor(props) {
 		super(props);
 		//local state collects user information to be passed as complete object 
@@ -15,8 +13,8 @@ class AddList extends Component {
 		this.state = {
 			title: '' ,
 			type: 'today',
-			//currently hard coded, need to be able to add, remove, edit, individual items
-			items: ['']
+			items: [''],
+			heading: 'Create a New List'
 		}
 		this.createList = this.createList.bind(this);
 		this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -26,6 +24,20 @@ class AddList extends Component {
 		this.removeItem = this.removeItem.bind(this);
 	}
 
+	//if this form was called by an edit button, the component state has been passed as props
+	//check for those props and assign values as appropriate
+	//will populate the form with the existing information
+	componentDidMount() {
+		if (this.props.listKey) {
+			let list = this.props.list;
+			this.setState({title: list.title});
+			this.setState({type: list.type});
+			this.setState({items: list.items});
+			this.setState({heading: 'Edit List'});
+		}
+	}
+
+/*CHANGE HANDLERS & IN-FORM BUTTONS*/
 	handleTitleChange = event => {
     	this.setState({ title: event.target.value });
   	};
@@ -49,15 +61,17 @@ class AddList extends Component {
 
   	removeItem = (index) => {
   		//if we are removing the last item, we still want one empty string in the array for rendering purposes
-  		if ((this.state.items).length === 1) this.setState({items:[""]});
+  		if ((this.state.items).length === 1) this.setState({ items: [""] });
   		else {
 	  		let newArr = this.state.items;
 	  		newArr.splice(index,1);
 	  		this.setState({items:newArr});
   		}
   	};
-  	
-  	//take the local state object and pass it to the application state via action addList
+  /*END OF HANDLERS & BUTTONS*/
+
+
+  	//Submit Form: take the local state object and pass it to the application state via action addList
 	createList(e) {
 		e.preventDefault();
 
@@ -65,21 +79,27 @@ class AddList extends Component {
 		let newArr = this.state.items;
 		this.setState({items: (newArr.filter(noBlanks))});
 
+		//create the new list from the state pieces
     	const newList = {
     		title: this.state.title,
     		type: this.state.type,
     		items: this.state.items
     	}
-    	//pass new list to the addList action
-    	this.props.addList(newList).then(this.props.close());
+    	
+    	//if we're editing, name is listKey, else name is new
+    	//the name is the database key for this particular list
+    	let name = "";
+    	if (this.props.listKey) { name = this.props.listKey; }
+    	else { name = "list" + Date.now(); }
 
+    	this.props.addList(newList,name).then(this.props.close());
   	}
 
   	
 	render() {
 		return (
 			<form className="create-list-form" onSubmit={(e) => this.createList(e)}>
-				<h2>Create a New List</h2>
+				<h2>{this.state.heading}</h2>
 
 				<label className="title-label">List Title</label>
 				<input 
@@ -91,7 +111,7 @@ class AddList extends Component {
 					required />
 
 				<label className="title-label">List Priority</label>
-				<select className="form-control"  onChange={this.handleTypeChange}>
+				<select className="form-control"  value={this.state.type} onChange={this.handleTypeChange}>
 					<option value="today">Today</option>
 					<option value="this-week">This Week</option>
 					<option value="this-month">This Month</option>
@@ -107,7 +127,7 @@ class AddList extends Component {
 						index={index}
 					/>))}
 				<button className="btn btn-secondary btn-block btn-sm" onClick={this.addItem}>Add Item</button>
-				<button type="submit" className="btn btn-primary">Create</button>
+				<button type="submit" className="btn btn-primary">Save</button>
 				<button className="btn btn-primary" onClick={this.props.close}>Cancel</button>
 			</form>
 		);

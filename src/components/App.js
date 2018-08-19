@@ -3,7 +3,6 @@ import AddList from '../containers/list-create';
 import AllLists from '../containers/all-lists';
 
 
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -13,6 +12,8 @@ class App extends Component {
     this.toggleEdit = this.toggleEdit.bind(this);
   }
 
+  //when add list button is clicked edit mode is true and the edit list form is shown
+  //else all lists are displayed
   toggleEdit() {
     this.setState({edit: !(this.state.edit)});
   };
@@ -32,7 +33,6 @@ class App extends Component {
       return (
         <div className="container">
           <header>
-          
             <h1>Type 'A'wesome</h1>
             <button
               id="new-list-btn"

@@ -28,6 +28,23 @@ body {
 		box-shadow: 0 0 8px $LightGrey !important;
 }
 
+.btn-graphic {
+	padding: 0 3px;
+	background-color: none;
+	border: none;
+
+	& p {
+		margin: 0;
+		padding: 0;
+		font-weight: 600;
+		}
+
+	&:hover{
+		cursor: pointer;
+	}
+}
+
+
 header {
 	width: 100%;
 	padding: 30px 0;
@@ -55,10 +72,6 @@ header {
 		background-color: $Purple;
 	}
 }/*end of header styles*/
-
-
-
-
 
 /*create list form styles*/
 .create-list-form {
@@ -147,23 +160,19 @@ header {
 	&.today {
 		background-color: $Slate;
 		color: #eee;
-		font-size: 120%;
 	}
 
 	&.this-week{
 		background-color: $Purple;
 		color: #eee;
-		font-size: 120%;
 	}
 
 	&.this-month{
 		background-color: $Peach;
-		font-size: 90%;
 	}
 
 	&.eventually{
 		background-color: $Rose;
-		font-size: 90%;
 		border: 1px solid #333;
 
 		& h2 {
@@ -172,38 +181,50 @@ header {
 		}
 	}
 
+	& .todo-list-header {
+		& button {
+			opacity: 0;
+			width: 30px;
+			height: 30px;
+			font-size: 1.5em;
+			float: right;
+			margin-left: 10px;
+
+			& p {
+				margin-top: -2px;
+			}
+		}
+	
+		&:hover {
+			& button {
+				opacity: 1;
+			}
+		}
+	}
+
+
 	& .list-group-item {
 		background-color: transparent;
 
-		p {
-			margin: 0;
-			padding: 0;
-			font-weight: 600;
-			width: 10px;
-			height: 15px;
-		}
-
 		& button {
 			opacity: 0;
-			padding: 0 3px;
+			width: 20px;
+			height: 20px;
+
 			font-size: .7em;
 			margin-left: 10px;
 			margin-right: -5px;
-			background-color: none;
-			border: none;
 		}
-
-	}
-
-	& li:hover {
-		& button {
-			opacity: 1;
-		}
-
-		& button:hover {
-			cursor: pointer;
+	
+		&:hover {
+			& button {
+				opacity: 1;
+			}
 		}
 	}
+
+
+	
 }/* end of todo lists styles */
 
  

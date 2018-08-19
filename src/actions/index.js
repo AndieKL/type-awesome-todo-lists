@@ -2,6 +2,8 @@ import { todoListsRef } from '../config/firebase';
 
 export const FETCH_LISTS = "fetch-lists";
 
+
+//collect all to-do lists from database
 export const fetchToDos = () => async dispatch => {
   todoListsRef.on("value", snapshot => {
     dispatch({
@@ -11,17 +13,17 @@ export const fetchToDos = () => async dispatch => {
   });
 };
 
-
-export const addList = newList => async dispatch => {
-  todoListsRef.push().set(newList);
+//add a new list or replace ('edit') an existing list
+export const addList = (newList,name) => async dispatch => {
+  todoListsRef.child(name).set({...newList});
 };
 
+//delete an existing list
 export const removeList = listId => async dispatch => {
   todoListsRef.child(listId).remove();
 };
 
-export const editList = editedList => async dispatch => {
-	//need to look for an edit/replace option
-	todoListsRef.push().set(editedList);
+//replace an existing list ('edit' it)
+export const editList = (editedList,name) => async dispatch => {
+	todoListsRef.child(name).set({...editedList});
 }
-
