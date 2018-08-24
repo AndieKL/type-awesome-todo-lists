@@ -13,7 +13,7 @@ class AddList extends Component {
 		this.state = {
 			title: '' ,
 			type: 'today',
-			items: [''],
+			items: [['', false]], //boolean represents if to-do item is complete
 			heading: 'Create a New List'
 		}
 		this.createList = this.createList.bind(this);
@@ -46,22 +46,26 @@ class AddList extends Component {
     	this.setState({ type: event.target.value });
   	};
 
+  	/*note on item change:
+  		if editing an existing item, the complete boolean doesn't maintain true if item was struck. 
+  		Just a design choice, if you're editing a crossed off item, surely it's not actually complete?
+  	*/
   	handleItemChange = (item,index) => {
   		let newArr = this.state.items;
-  		newArr[index] = item;
+  		newArr[index] = [item,false];
   		this.setState({items:newArr});
   	};
 
   	addItem = (e) => {
   		e.preventDefault();
   		let newArr = this.state.items;
-  		newArr.push('');
+  		newArr.push(['', false]);
   		this.setState({items:newArr});
   	};
 
   	removeItem = (index) => {
   		//if we are removing the last item, we still want one empty string in the array for rendering purposes
-  		if ((this.state.items).length === 1) this.setState({ items: [""] });
+  		if ((this.state.items).length === 1) this.setState({ items: [['',false]] });
   		else {
 	  		let newArr = this.state.items;
 	  		newArr.splice(index,1);
@@ -75,9 +79,11 @@ class AddList extends Component {
 	createList(e) {
 		e.preventDefault();
 
-		//don't send any empty items to the database
+		//don't send any empty items to the database 
+		/*THIS IS NOT WORKING!!*/
 		let newArr = this.state.items;
-		this.setState({items: (newArr.filter(noBlanks))});
+		newArr = newArr.filter(noBlanks);
+		this.setState({items:newArr});
 
 		//create the new list from the state pieces
     	const newList = {
@@ -123,7 +129,7 @@ class AddList extends Component {
 						key={index}
 						changeHandler={this.handleItemChange}
 						removeItem={this.removeItem}
-						item={item} 
+						item={item[0]} 
 						index={index}
 					/>))}
 				<button className="btn btn-secondary btn-block btn-sm" onClick={this.addItem}>Add Item</button>

@@ -28,6 +28,10 @@ class AllLists extends Component {
   		this.setState({show: !(this.state.show)});
   	}
 
+  	toggleComplete(index,key) {
+
+  	}
+
   	/*when edit button is clicked, a copy of the list is set to state, we switch to edit mode, 
   	and pass the current list to the edit form*/
   	edit(listKey) {
@@ -42,8 +46,8 @@ class AllLists extends Component {
 		- upgrade to include warning after clicking delete list
   	*/
 	renderLists() {
-		return _.map(this.props.lists, (list,listKey) => {
-	      return (
+		return _.map(this.props.lists, (list,listKey) => {      
+			return (
 	        <div className={`todo-list ${list.type}`} key={listKey}>
 	        	
 	        	<div className="todo-list-header">
@@ -66,8 +70,10 @@ class AllLists extends Component {
 	          	{(list.items).map((item,index) => (
 					<ListItem
 						key={index}
-						item={item} 
+						item={item[0]}
+						complete={item[1]}
 						index={index}
+						listName={listKey}
 				/>))}
 	          	</ul>
 	        </div>

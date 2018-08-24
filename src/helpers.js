@@ -1,3 +1,3 @@
 export function noBlanks(item) {
-  		return item !== "";
+  		return item[0] !== '';
   	}

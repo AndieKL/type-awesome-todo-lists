@@ -205,26 +205,15 @@ header {
 
 	& .list-group-item {
 		background-color: transparent;
-
-		& button {
-			opacity: 0;
-			width: 20px;
-			height: 20px;
-
-			font-size: .7em;
-			margin-left: 10px;
-			margin-right: -5px;
+		
+		&.true {
+			text-decoration: line-through;
 		}
 	
 		&:hover {
-			& button {
-				opacity: 1;
-			}
+			cursor: pointer;
 		}
 	}
-
-
-	
 }/* end of todo lists styles */
 
  

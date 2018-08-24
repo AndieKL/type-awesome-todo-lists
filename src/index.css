@@ -142,9 +142,6 @@ header #new-list-btn:hover {
 	border: 1px solid #333;
 	border-radius: 6px;
 	display: inline-block;
-
-
-	
 }
 .todo-list.today {
 		background-color: #3C4E5C;
@@ -182,18 +179,12 @@ header #new-list-btn:hover {
 .todo-list .list-group-item {
 		background-color: transparent;
 	}
-.todo-list .list-group-item button {
-			opacity: 0;
-			width: 20px;
-			height: 20px;
-
-			font-size: .7em;
-			margin-left: 10px;
-			margin-right: -5px;
+.todo-list .list-group-item.true {
+			text-decoration: line-through;
 		}
-.todo-list .list-group-item:hover button {
-				opacity: 1;
-			}/* end of todo lists styles */
+.todo-list .list-group-item:hover {
+			cursor: pointer;
+		}/* end of todo lists styles */
 
  
 

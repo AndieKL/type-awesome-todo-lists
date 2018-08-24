@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'; 
 
 export default class ListItemInput extends Component {
 	constructor(props){
@@ -6,7 +6,6 @@ export default class ListItemInput extends Component {
 		this.itemChange = this.itemChange.bind(this);
 		this.remove = this.remove.bind(this);
 	}
-
 
 	itemChange(e) {
 		this.props.changeHandler(e.target.value,this.props.index);
@@ -18,7 +17,6 @@ export default class ListItemInput extends Component {
 	};
 
 	render() {
-		
 		return(
 			<div className="list-input">
 				<button onClick={this.remove} title="Remove this item" className="btn custom-button">x</button>

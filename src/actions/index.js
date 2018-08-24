@@ -19,11 +19,16 @@ export const addList = (newList,name) => async dispatch => {
 };
 
 //delete an existing list
-export const removeList = listId => async dispatch => {
-  todoListsRef.child(listId).remove();
+export const removeList = name => async dispatch => {
+  todoListsRef.child(name).remove();
 };
 
 //replace an existing list ('edit' it)
 export const editList = (editedList,name) => async dispatch => {
 	todoListsRef.child(name).set({...editedList});
-}
+};
+
+//direct access to the boolean that controls the strikethrough effect for list items
+export const toggleComplete = (itemPath, complete) => async dispatch => {
+	todoListsRef.child(itemPath).set(complete);
+};
