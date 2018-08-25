@@ -150,21 +150,53 @@ header {
 
 
 /*Todo Lists*/
+
+#all-lists {
+	display: grid;
+	grid-column-gap: 0;
+	grid-template-columns: 25% 25% 25% 25%;
+}
+
+@media (max-width: 1000px) {
+	#all-lists {
+		grid-template-columns: 33% 33% 33%;
+	}
+}
+
+@media (max-width: 800px) {
+	#all-lists {
+		grid-template-columns: 50% 50%;
+	}
+}
+
+@media (max-width: 600px) {
+	#all-lists {
+	display: block;
+	}
+}
+
 .todo-list {
 	margin: 0;
 	padding: 20px;
 	border: 1px solid #333;
-	border-radius: 6px;
-	display: inline-block;
 
 	&.today {
 		background-color: $Slate;
 		color: #eee;
+		font-size: 130%;
+		grid-column: span 2;
+		grid-row: span 2;
+
+		& h2 {
+			font-size: 2em;
+		}
 	}
 
 	&.this-week{
 		background-color: $Purple;
 		color: #eee;
+		font-size: 110%;
+		grid-row: span 2;
 	}
 
 	&.this-month{
@@ -174,25 +206,21 @@ header {
 	&.eventually{
 		background-color: $Rose;
 		border: 1px solid #333;
+		font-size: 90%;
 
 		& h2 {
-			font-size: 1.5em;
-			font-weight: 600;
+			font-size: 1.8em;
 		}
 	}
 
 	& .todo-list-header {
 		& button {
+			font-size: 100% !important;
 			opacity: 0;
 			width: 30px;
 			height: 30px;
-			font-size: 1.5em;
 			float: right;
 			margin-left: 10px;
-
-			& p {
-				margin-top: -2px;
-			}
 		}
 	
 		&:hover {

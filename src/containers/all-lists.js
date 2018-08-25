@@ -94,9 +94,14 @@ class AllLists extends Component {
 			//the edit button has been clicked for a particular list
 			return <AddList list={this.state.list} listKey={this.state.listKey} close={this.toggleShow} />
 		}
-		else 
+		else { 
 			//good to go, show all the lists
-			return this.renderLists();
+			return (
+				<div id="all-lists">
+				    {this.renderLists()}
+				</div>
+			);
+		}
 	}
 } 
 

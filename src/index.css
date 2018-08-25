@@ -136,52 +136,91 @@ header #new-list-btn:hover {
 
 
 /*Todo Lists*/
+
+#all-lists {
+	display: grid;
+	grid-column-gap: 0;
+	grid-template-columns: 25% 25% 25% 25%;
+}
+
+@media (max-width: 1000px) {
+	#all-lists {
+		grid-template-columns: 33% 33% 33%;
+	}
+}
+
+@media (max-width: 800px) {
+	#all-lists {
+		grid-template-columns: 50% 50%;
+	}
+}
+
+@media (max-width: 600px) {
+	#all-lists {
+	display: block;
+	}
+}
+
 .todo-list {
 	margin: 0;
 	padding: 20px;
 	border: 1px solid #333;
-	border-radius: 6px;
-	display: inline-block;
 }
+
 .todo-list.today {
 		background-color: #3C4E5C;
 		color: #eee;
+		font-size: 130%;
+		grid-column: span 2;
+		grid-row: span 2;
 	}
+
+.todo-list.today h2 {
+			font-size: 2em;
+		}
+
 .todo-list.this-week{
 		background-color: #524451;
 		color: #eee;
+		font-size: 110%;
+		grid-row: span 2;
 	}
+
 .todo-list.this-month{
 		background-color: #D9B19A;
 	}
+
 .todo-list.eventually{
 		background-color: #B88187;
 		border: 1px solid #333;
+		font-size: 90%;
 	}
+
 .todo-list.eventually h2 {
-			font-size: 1.5em;
-			font-weight: 600;
+			font-size: 1.8em;
 		}
+
 .todo-list .todo-list-header button {
+			font-size: 100% !important;
 			opacity: 0;
 			width: 30px;
 			height: 30px;
-			font-size: 1.5em;
 			float: right;
 			margin-left: 10px;
 		}
-.todo-list .todo-list-header button p {
-				margin-top: -2px;
-			}
+
 .todo-list .todo-list-header:hover button {
 				opacity: 1;
 			}
+
 .todo-list .list-group-item {
 		background-color: transparent;
 	}
+
 .todo-list .list-group-item.true {
 			text-decoration: line-through;
 		}
+
 .todo-list .list-group-item:hover {
 			cursor: pointer;
 		}/* end of todo lists styles */
