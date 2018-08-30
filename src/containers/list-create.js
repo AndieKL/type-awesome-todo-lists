@@ -22,7 +22,6 @@ class AddList extends Component {
 		this.handleItemChange = this.handleItemChange.bind(this);
 		this.addItem = this.addItem.bind(this);
 		this.removeItem = this.removeItem.bind(this);
-		this.filterList = this.filterList.bind(this);
 	}
 
 	//if this form was called by an edit button, the component state has been passed as props
@@ -76,23 +75,17 @@ class AddList extends Component {
   /*END OF HANDLERS & BUTTONS*/
 
   	//Submit Form: take the local state object and pass it to the application state via action addList
-  	filterList(e) {
+  	createList(e) {
   		e.preventDefault();
   		//don't send any empty items to the database 
   		let newArr = this.state.items;
   		newArr = newArr.filter(noBlanks);
-  		/*Because js/react is asynchronous, the rest of the actions to create a list
-  		need to be provided as a callback to setState to ensure state.items is updated
-  		first. Yes, it took me a LONG time to figure out why my 'filter' wasn't working*/
-  		this.setState({items:newArr}, () => this.createList());
-  	}
 
-  	createList() {
   		//create the new list from the component state pieces
     	const newList = {
     		title: this.state.title,
     		type: this.state.type,
-    		items: this.state.items
+    		items: newArr
     	}
     	
     	//the name is the database key for this particular list
@@ -108,7 +101,7 @@ class AddList extends Component {
   	
 	render() {
 		return (
-			<form className="create-list-form" onSubmit={(e) => this.filterList(e)}>
+			<form className="create-list-form" onSubmit={(e) => this.createList(e)}>
 				<h2>{this.state.heading}</h2>
 
 				<label className="title-label">List Title</label>
@@ -135,6 +128,7 @@ class AddList extends Component {
 						removeItem={this.removeItem}
 						item={item[0]} 
 						index={index}
+						add={this.addItem}
 					/>))}
 				<button className="btn btn-secondary btn-block btn-sm" onClick={this.addItem}>Add Item</button>
 				<button type="submit" className="btn btn-primary">Save</button>

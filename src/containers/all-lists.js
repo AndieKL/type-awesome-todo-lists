@@ -1,9 +1,10 @@
 import React,  { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { fetchToDos, removeList } from '../actions';
+import { fetchToDos, removeList, addList } from '../actions';
 import ListItem from '../components/list-item';
-import AddList from './list-create.js';
+import AddList from './list-create';
+import todoLists from '../demo-lists';
 
 class AllLists extends Component {
 	constructor(props) {
@@ -16,6 +17,7 @@ class AllLists extends Component {
 		this.renderLists = this.renderLists.bind(this);
 		this.edit = this.edit.bind(this);
 		this.toggleShow = this.toggleShow.bind(this);
+		this.addDemoLists = this.addDemoLists.bind(this);
 	}
 
 	//run action to fetch data from Firebase
@@ -28,16 +30,20 @@ class AllLists extends Component {
   		this.setState({show: !(this.state.show)});
   	}
 
-  	toggleComplete(index,key) {
-
-  	}
-
   	/*when edit button is clicked, a copy of the list is set to state, we switch to edit mode, 
   	and pass the current list to the edit form*/
   	edit(listKey) {
   		this.setState({ listKey });
   		this.setState({ list: this.props.lists[listKey] });
   		this.setState({ show:false });
+  	}
+
+  	//load a dummy array of lists
+  	addDemoLists() {
+  		todoLists.map(item => {
+  			let name = "list" + Date.now();
+  			this.props.addList(item,name);
+  		});
   	}
 
   	//map over the todo lists returned from fetch action to display
@@ -87,6 +93,7 @@ class AllLists extends Component {
 			return (
 				<div>
 					<h2>Create a new list to get started.</h2>
+					<button onClick={this.addDemoLists} className="btn btn-secondary">Load Demo</button>
 				</div>
 			);
 		}
@@ -100,6 +107,7 @@ class AllLists extends Component {
 				<div id="all-lists">
 				    {this.renderLists()}
 				</div>
+
 			);
 		}
 	}
@@ -111,4 +119,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, { fetchToDos, removeList })(AllLists);
+export default connect(mapStateToProps, { fetchToDos, removeList, addList })(AllLists);
