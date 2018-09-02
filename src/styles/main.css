@@ -1,4 +1,4 @@
-/* add your variables here */
+/* add your variables here */ 
 $LightGrey: #CCC8C5;
 $Slate: #3C4E5C;
 $Rose: #B88187;
@@ -180,7 +180,7 @@ header {
 	padding: 20px;
 	border: 1px solid #333;
 
-	&.today {
+	&.priority1 {
 		background-color: $Slate;
 		color: #eee;
 		font-size: 130%;
@@ -192,18 +192,18 @@ header {
 		}
 	}
 
-	&.this-week{
+	&.priority2{
 		background-color: $Purple;
 		color: #eee;
 		font-size: 110%;
 		grid-row: span 2;
 	}
 
-	&.this-month{
+	&.priority3{
 		background-color: $Peach;
 	}
 
-	&.eventually{
+	&.priority4{
 		background-color: $Rose;
 		border: 1px solid #333;
 		font-size: 90%;

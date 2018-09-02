@@ -167,7 +167,7 @@ header #new-list-btn:hover {
 	border: 1px solid #333;
 }
 
-.todo-list.today {
+.todo-list.priority1 {
 		background-color: #3C4E5C;
 		color: #eee;
 		font-size: 130%;
@@ -175,28 +175,28 @@ header #new-list-btn:hover {
 		grid-row: span 2;
 	}
 
-.todo-list.today h2 {
+.todo-list.priority1 h2 {
 			font-size: 2em;
 		}
 
-.todo-list.this-week{
+.todo-list.priority2{
 		background-color: #524451;
 		color: #eee;
 		font-size: 110%;
 		grid-row: span 2;
 	}
 
-.todo-list.this-month{
+.todo-list.priority3{
 		background-color: #D9B19A;
 	}
 
-.todo-list.eventually{
+.todo-list.priority4{
 		background-color: #B88187;
 		border: 1px solid #333;
 		font-size: 90%;
 	}
 
-.todo-list.eventually h2 {
+.todo-list.priority4 h2 {
 			font-size: 1.8em;
 		}
 

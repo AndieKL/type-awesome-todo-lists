@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'; 
 import { connect } from 'react-redux';
-
 import { noBlanks } from '../helpers'; //used to filter array of to-do items
 import { addList } from '../actions';  //add the new list of items to the Application state
 import ListItemInput from '../components/list-item-input'; //render and manage individual to-do items
@@ -12,7 +11,7 @@ class AddList extends Component {
 		//to application state on form submit
 		this.state = {
 			title: '' ,
-			type: 'today',
+			type: 'priority1',
 			items: [['', false]], //boolean represents if to-do item is complete
 			heading: 'Create a New List'
 		}
@@ -115,10 +114,10 @@ class AddList extends Component {
 
 				<label className="title-label">List Priority</label>
 				<select className="form-control"  value={this.state.type} onChange={this.handleTypeChange}>
-					<option value="today">Today</option>
-					<option value="this-week">This Week</option>
-					<option value="this-month">This Month</option>
-					<option value="eventually">Eventually</option>
+					<option value="priority1">Today</option>
+					<option value="priority2">This Week</option>
+					<option value="priority3">This Month</option>
+					<option value="priority4">Eventually</option>
 				</select>
 				<label className="title-label">Things To Do</label>
 				{(this.state.items).map((item,index) => (
