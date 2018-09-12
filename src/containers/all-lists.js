@@ -43,6 +43,7 @@ class AllLists extends Component {
   		todoLists.map(item => {
   			let name = "list" + Date.now();
   			this.props.addList(item,name);
+  			return true;
   		});
   	}
 

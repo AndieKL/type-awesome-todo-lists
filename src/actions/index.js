@@ -1,6 +1,8 @@
 import { todoListsRef } from '../config/firebase';
+import firebase from 'firebase';
 
 export const FETCH_LISTS = "fetch-lists";
+export const GET_USER = "get-user";
 
 
 //collect all to-do lists from database
@@ -14,8 +16,8 @@ export const fetchToDos = () => async dispatch => {
 };
 
 //add a new list or replace ('edit') an existing list
-export const addList = (newList,name) => async dispatch => {
-  todoListsRef.child(name).set({...newList});
+export const addList = (uid,newList,name) => async dispatch => {
+  todoListsRef.child(uid).child(name).set({...newList});
 };
 
 //delete an existing list
@@ -32,3 +34,29 @@ export const editList = (editedList,name) => async dispatch => {
 export const toggleComplete = (itemPath, complete) => async dispatch => {
 	todoListsRef.child(itemPath).set(complete);
 };
+
+
+export const getUser = () => dispatch => {
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+      dispatch({
+        type: GET_USER,
+        payload: user
+      });
+    }
+    else {
+      dispatch({
+        type: GET_USER,
+        payload: null
+      });
+    }
+  });
+};
+
+
+export const signIn = provider => {
+    const authProvider = new firebase.auth[`${provider}AuthProvider`]();
+    firebase.auth().signInWithPopup(authProvider);
+};
+
+export const signOut = () => firebase.auth().signOut();

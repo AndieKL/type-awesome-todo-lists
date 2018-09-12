@@ -27,6 +27,9 @@ class AddList extends Component {
 	//check for those props and assign values as appropriate
 	//will populate the form with the existing information
 	componentDidMount() {
+
+		//IF NO USER REDIRECT
+
 		if (this.props.listKey) {
 			let list = this.props.list;
 			this.setState({title: list.title});
@@ -94,7 +97,7 @@ class AddList extends Component {
     	else { name = "list" + Date.now(); }
 
     	//finally, run the action addList
-    	this.props.addList(newList,name).then(this.props.close());
+    	this.props.addList(this.props.user.user.uid,newList,name).then(this.props.close());
   	}
 
   	
@@ -137,5 +140,8 @@ class AddList extends Component {
 	}
 }
 
+function mapStateToProps({ user }) {
+  return { user };
+}
 
-export default connect(null, { addList })(AddList);
+export default connect(mapStateToProps, { addList })(AddList);
