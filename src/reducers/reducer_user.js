@@ -7,4 +7,4 @@ export default function(state = false, action) {
     default:
       return state;
   }
-}
+} 

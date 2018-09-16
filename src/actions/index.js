@@ -54,9 +54,20 @@ export const getUser = () => dispatch => {
 };
 
 
-export const signIn = provider => {
-    const authProvider = new firebase.auth[`${provider}AuthProvider`]();
-    firebase.auth().signInWithPopup(authProvider);
+export const signIn = provider => dispatch => {
+  const authProvider = new firebase.auth[`${provider}AuthProvider`]();
+  firebase.auth().signInWithPopup(authProvider)
+    .then(result => {})
+    .catch(error => {
+      console.log(error);
+    });
 };
 
-export const signOut = () => firebase.auth().signOut();
+export const signOut = () => dispatch => {
+  firebase.auth().signOut()
+    .then(() => {//success
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};

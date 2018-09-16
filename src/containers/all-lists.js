@@ -23,6 +23,7 @@ class AllLists extends Component {
 	//run action to fetch data from Firebase
 	componentDidMount() {
     	this.props.fetchToDos(); 
+    	console.log(this.props.user.uid);
   	}
 
   	//toggles between showing all lists and editing a particular list
@@ -42,7 +43,7 @@ class AllLists extends Component {
   	addDemoLists() {
   		todoLists.map(item => {
   			let name = "list" + Date.now();
-  			this.props.addList(item,name);
+  			this.props.addList(this.props.user.uid,item,name);
   			return true;
   		});
   	}
@@ -116,7 +117,8 @@ class AllLists extends Component {
 
 function mapStateToProps(state) {
 	return {
-		lists: state.lists
+		lists: state.lists,
+		user: state.user
 	};
 }
 

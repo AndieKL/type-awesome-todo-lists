@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+
+//if this is a presentation component and not a container the toggleComplete should be passed from all-lists (the parent container)
 import { connect } from 'react-redux';
 import { toggleComplete } from '../actions/';
 
