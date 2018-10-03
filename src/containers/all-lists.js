@@ -1,42 +1,32 @@
 import React,  { Component } from 'react'; 
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { fetchToDos, removeList, addList } from '../actions';
+import { fetchToDos, removeList, addList, signOut, activeList } from '../actions';
 import ListItem from '../components/list-item';
-import AddList from './list-create';
 import todoLists from '../demo-lists';
 
 class AllLists extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			show:true,
+		this.state = { 
 			list:'',
 			listKey: ''
 		}
 		this.renderLists = this.renderLists.bind(this);
 		this.edit = this.edit.bind(this);
-		this.toggleShow = this.toggleShow.bind(this);
 		this.addDemoLists = this.addDemoLists.bind(this);
 	}
 
 	//run action to fetch data from Firebase
 	componentDidMount() {
-    	this.props.fetchToDos(); 
-    	console.log(this.props.user.uid);
-  	}
-
-  	//toggles between showing all lists and editing a particular list
-  	toggleShow() {
-  		this.setState({show: !(this.state.show)});
+    	this.props.fetchToDos(this.props.user.uid);
   	}
 
   	/*when edit button is clicked, a copy of the list is set to state, we switch to edit mode, 
   	and pass the current list to the edit form*/
-  	edit(listKey) {
-  		this.setState({ listKey });
-  		this.setState({ list: this.props.lists[listKey] });
-  		this.setState({ show:false });
+  	edit(listKey=null) {
+  		this.props.activeList(listKey);
+  		this.props.history.push("/editlist");
   	}
 
   	//load a dummy array of lists
@@ -57,12 +47,11 @@ class AllLists extends Component {
 		return _.map(this.props.lists, (list,listKey) => {      
 			return (
 	        <div className={`todo-list ${list.type}`} key={listKey}>
-	        	
 	        	<div className="todo-list-header">
 	        		<button 
 	        			className="btn btn-graphic" 
 	        			title="Delete List" 
-	        			onClick={() => this.props.removeList(listKey)}>
+	        			onClick={() => this.props.removeList(this.props.user.uid,listKey)}>
 	        			<p>X</p>
 	        		</button>
 		        	<button 
@@ -94,20 +83,36 @@ class AllLists extends Component {
 			//There are no lists in the user's database
 			return (
 				<div>
+					<button
+			            id="new-list-btn"
+			            className="btn btn-primary btn-lg"
+			            title="Add New List"
+			            onClick={this.edit}
+			            >
+			            +
+          			</button>
 					<h2>Create a new list to get started.</h2>
 					<button onClick={this.addDemoLists} className="btn btn-secondary">Load Demo</button>
+					<button className="logout btn" onClick={this.props.signOut}>Log Out</button>
 				</div>
 			);
-		}
-		else if (!this.state.show) {
-			//the edit button has been clicked for a particular list
-			return <AddList list={this.state.list} listKey={this.state.listKey} close={this.toggleShow} />
 		}
 		else { 
 			//good to go, show all the lists
 			return (
-				<div id="all-lists">
-				    {this.renderLists()}
+				<div>
+					<button
+			            id="new-list-btn"
+			            className="btn btn-primary btn-lg"
+			            title="Add New List"
+			            onClick={this.edit}
+			            >
+			            +
+          			</button>
+					<div id="all-lists">
+				    	{this.renderLists()}
+					</div>
+					<button className="logout btn" onClick={this.props.signOut}>Log Out</button>
 				</div>
 
 			);
@@ -122,4 +127,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, { fetchToDos, removeList, addList })(AllLists);
+export default connect(mapStateToProps, { fetchToDos, removeList, addList, signOut, activeList })(AllLists);

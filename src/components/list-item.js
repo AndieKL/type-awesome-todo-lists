@@ -12,7 +12,7 @@ class ListItem extends Component {
 
 	completed() {
 		let itemPath = `${this.props.listName}/items/${this.props.index}/1`;
-		this.props.toggleComplete(itemPath, !this.props.complete);
+		this.props.toggleComplete(this.props.user.uid,itemPath, !this.props.complete);
 	}
 
 	render() {
@@ -24,4 +24,10 @@ class ListItem extends Component {
 	};
 }
 
-export default connect(null, { toggleComplete })(ListItem);
+function mapStateToProps(state) {
+	return {
+		user: state.user
+	};
+}
+
+export default connect(mapStateToProps, { toggleComplete })(ListItem);

@@ -7,9 +7,9 @@ import { connect } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 import requireUser from './authorized';
-import { getUser, signOut } from '../actions';
+import { getUser } from '../actions';
 
-class App extends Component {
+class App extends Component { 
 
   componentWillMount() {
     this.props.getUser();
@@ -20,23 +20,15 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <h1>Type 'A'wesome</h1>
-          <button
-              id="new-list-btn"
-              className="btn btn-primary btn-lg"
-              title="Add New List"
-              >
-              +
-          </button>
           <Route exact path="/" component={ Login } />
           <Route path="/yourlists" component={ requireUser(AllLists) } />
           <Route path="/editlist" component={ requireUser(AddList) } />
-          <button className="logout btn" onClick={this.props.signOut}>Log Out</button>
         </div>
       </BrowserRouter>
     );
   }
 }
 
-export default connect(null, { getUser, signOut })(App);
+export default connect(null, { getUser })(App);
 
  

@@ -1,13 +1,13 @@
-import { todoListsRef } from '../config/firebase';
+import { todoListsRef } from '../config/firebase'; 
 import firebase from 'firebase';
 
 export const FETCH_LISTS = "fetch-lists";
 export const GET_USER = "get-user";
-
+export const ACTIVE_LIST = "active-list";
 
 //collect all to-do lists from database
-export const fetchToDos = () => async dispatch => {
-  todoListsRef.on("value", snapshot => {
+export const fetchToDos = (uid) => async dispatch => {
+  todoListsRef.child(uid).on("value", snapshot => {
     dispatch({
       type: FETCH_LISTS,
       payload: snapshot.val()
@@ -21,19 +21,37 @@ export const addList = (uid,newList,name) => async dispatch => {
 };
 
 //delete an existing list
-export const removeList = name => async dispatch => {
-  todoListsRef.child(name).remove();
+export const removeList = (uid,name) => async dispatch => {
+  todoListsRef.child(uid).child(name).remove();
 };
 
 //replace an existing list ('edit' it)
-export const editList = (editedList,name) => async dispatch => {
-	todoListsRef.child(name).set({...editedList});
+export const editList = (uid,editedList,name) => async dispatch => {
+	todoListsRef.child(uid).child(name).set({...editedList});
 };
 
 //direct access to the boolean that controls the strikethrough effect for list items
-export const toggleComplete = (itemPath, complete) => async dispatch => {
-	todoListsRef.child(itemPath).set(complete);
+export const toggleComplete = (uid,itemPath, complete) => async dispatch => {
+	todoListsRef.child(uid).child(itemPath).set(complete);
 };
+
+//the user has selected a list (either for editting or for forward display on small screens)
+//the list key is stored only
+export const activeList = (listKey) => {
+  if (listKey) {
+      return {
+        type: ACTIVE_LIST,
+        payload: listKey
+      };
+    }
+    else {
+      return {
+        type: ACTIVE_LIST,
+        payload: null
+      };
+    }
+}
+
 
 
 export const getUser = () => dispatch => {
